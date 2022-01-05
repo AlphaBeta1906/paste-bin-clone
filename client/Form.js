@@ -1,7 +1,7 @@
 import m from "mithril"
 import $ from "jquery"
 import Swal from "sweetalert2"
-
+import hljs from "highlight.js"
 
 var state = {
 	title: "",
@@ -19,6 +19,7 @@ var state = {
 		state.loading=false
 	}
 }
+
 var url_test = "http://127.0.0.1:8000/api/v1/paste"
 var url = "https://pastebincloneapi.pythonanywhere.com/api/v1/paste"
 var Fetch = {
@@ -43,7 +44,26 @@ var Fetch = {
 			state.reset()
 		})
 		console.log(state.loading)
-	}
+	},
+  _get: function(id){
+  		var paste = {}
+		m.request({
+			method: "GET",
+			url: url+"/"+id,
+			cache:true
+		}).then(function(data){
+			paste.title = data["title"]
+			paste.language = data["language"]
+			paste.code = data["code"]
+			paste.date = data["date_created"].split("T")[0]
+			paste.code = hljs.highlight(paste.code, {language: paste.language}).value
+		}).catch(function(error){
+			paste.error = "paste not found"
+			paste.code = error.code
+		})
+		return paste
+		
+  }
 }
 
 var Form = {
@@ -105,4 +125,4 @@ var Form = {
 	}
 }
 
-export {Form}
+export {Form,Fetch}
