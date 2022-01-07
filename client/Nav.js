@@ -20,16 +20,20 @@ var Nav = {
 				document.title==="New paste"?m(""):m("li",m(Link,{link : "/home",text : "New paste"})),
 				m("li",
 					m("label",{for:"check"}),
+					m("i.fas fa-sun",{style:"padding-right:2px"}),
 					m("input",{
 						id: "check",
 						type: "checkbox",
 						role: "switch",
 						oninput: function(){
 							$("html").attr("data-theme",this.checked?"dark":"light")
+							$(this.checked?"#light":"#dark").attr("disabled","disabled")
+							$(this.checked?"#dark":"#light").removeAttr("disabled")
 							localStorage.setItem("theme",this.checked?"dark":"light")
 						},
 						checked: $("html").attr("data-theme") == "light"?false:true
-					})
+					}),
+					m("i.fas fa-moon")
 				)
 			)
 		)

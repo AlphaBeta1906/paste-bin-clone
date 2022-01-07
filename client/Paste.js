@@ -4,12 +4,10 @@ import {Nav} from "./Nav"
 import {Fetch} from "./Form"
 
 
-var url_test = "http://127.0.0.1:8000/api/v1/paste"
-var url = "https://pastebincloneapi.pythonanywhere.com/api/v1/paste"
 var paste = {}
 
 var Code = {
-	oninit : function(vnode){
+	oninit: function(vnode){
 		paste = Fetch._get(vnode.attrs.id)
 	},
 	view: function(){
