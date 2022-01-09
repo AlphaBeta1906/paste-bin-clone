@@ -26,7 +26,7 @@ var Paste = {
 					m("article",
 						m("",
 							m("header",m("h3",paste.title)),
-							m("button.btn",
+							m("button.btn fas fa-copy",
 								{
 									style:"width:25%;",
 									"data-clipboard-target":".hljs"
