@@ -1,15 +1,6 @@
 import m from "mithril"
-import {Nav,Link,theme} from "./Nav"
+import {Nav,Link,Footer,theme} from "./Nav"
 import {Form} from "./Form"
-
-var Footer = {
-	view: function(){
-		return 	m("footer",{style:"position:relative;bottom:0;"},
-						m("hr"),
-						m("p.font-thin","© Copyright 2021 alfarizi")
-					)
-	}
-}
 
 
 var Home = {

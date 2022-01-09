@@ -2,6 +2,7 @@ import m from "mithril"
 import $ from "jquery"
 import Swal from "sweetalert2"
 import hljs from "highlight.js"
+import Lang from "./Lang"
 
 var state = {
 	title: "",
@@ -28,6 +29,7 @@ var Fetch = {
 			method: "POST",
 			url: url,
 			body: state,
+			timeout: 30000
 		}).then(function(data){
 			console.log(data)
 			console.log(data["unique_id"])
@@ -41,6 +43,7 @@ var Fetch = {
 			m.route.set("/paste/:id",{id: state.unique_id})
 		}).catch(function(error){
 			console.log(error)
+			
 			state.reset()
 		})
 		console.log(state.loading)
@@ -50,7 +53,8 @@ var Fetch = {
 		m.request({
 			method: "GET",
 			url: url+"/"+id,
-			cache:true
+			cache:true,
+			timeout:30000
 		}).then(function(data){
 			paste.title = data["title"]
 			paste.language = data["language"]
@@ -67,6 +71,13 @@ var Fetch = {
 }
 
 var Form = {
+	option: function(){
+		var arr = []
+		for(const [key,value] of Object.entries(Lang)){
+			arr.push({"value":value,"key":key})
+		}
+		return arr		
+	},
 	view: function(){
 		return m("form",
 					{
@@ -96,20 +107,9 @@ var Form = {
 								state.language = e.target.value
 							}
 						},
-						m("option",{value:"python"},"python"),
-						m("option",{value:"java"},"java"),
-						m("option",{value:"cpp"},"c++"),
-						m("option",{value:"c"},"c"),
-						m("option",{value:"cs"},"c#"),
-						m("option",{value:"ruby"},"ruby"),
-						m("option",{value:"go"},"go"),
-						m("option",{value:"rust"},"rust"),
-						m("option",{value:"jsx"},"jsx"),
-						m("option",{value:"jsx"},"tsx"),
-						m("option",{value:"javascript"},"javascript"),
-						m("option",{value:"typescript"},"typescript"),
-						m("option",{value:"haskell"},"haskell"),
-						m("option",{value:"elm"},"elm"),
+						Form.option().map(function(data){
+							return m("option",{value:data.key},data.value)
+						}) 
 					),
 					m("label",{for:"code"},"Code"),
 					m("textarea",

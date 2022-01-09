@@ -40,4 +40,13 @@ var Nav = {
 	}
 }
 
-export {Nav,Link,theme}
+var Footer = {
+	view: function(){
+		return 	m("footer",{style:"position:relative;bottom:0;"},
+						m("hr"),
+						m("p.font-thin","© Copyright 2021 alfarizi")
+					)
+	}
+}
+
+export {Nav,Link,Footer,theme}

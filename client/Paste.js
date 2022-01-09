@@ -1,6 +1,6 @@
 import m from "mithril"
 import ClipboardJS from "clipboard"
-import {Nav} from "./Nav"
+import {Nav,Footer} from "./Nav"
 import {Fetch} from "./Form"
 
 
@@ -12,7 +12,7 @@ var Code = {
 	},
 	view: function(){
 		return m("pre",
-				 paste.error?m("code",paste.error):m(`code.hljs language-${paste.language}`,{style:"min-height:250px;font-size:14pt"},m.trust(paste.code))
+				 paste.error?m("code",paste.error):m(`code.hljs language-${paste.language}`,{style:"min-height:250px;font-size:16pt"},m.trust(paste.code))
 				)
 	}
 }
@@ -34,7 +34,8 @@ var Paste = {
 							m(Code,{id:vnode.attrs.id}),
 							m("footer",`created at : ${paste.date}`)
 						)						
-					)
+					),
+					m(Footer)
 				)
 					
 	}
