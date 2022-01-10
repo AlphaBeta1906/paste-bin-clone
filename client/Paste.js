@@ -12,7 +12,12 @@ var Code = {
 	},
 	view: function(){
 		return m("pre",
-				 paste.error?m("code",paste.error):m(`code.hljs language-${paste.language}`,{style:"min-height:250px;font-size:16pt"},m.trust(paste.code))
+				 paste.error?m("code",paste.error):m(`code.hljs language-${paste.language}`,
+				 	{style:{
+				 			"min-height": "250px",
+				 			"font-size": "14pt",
+				 		   }
+				 	},m.trust(paste.code))
 				)
 	}
 }
