@@ -1,11 +1,17 @@
 {
   "name": "sample-mithril-app",
   "version": "0.1.0",
+  "jest": {
+    "verbose": true,
+    "globals": {
+      "window": {}
+    }
+  },
   "scripts": {
     "dev": "webpack-dev-server --config webpack.dev.js",
     "build": "fsbin emptyDir build && fsbin copy public build && webpack --config webpack.build.js",
     "clean": "fsbin emptyDir build",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "ospec --require ./test_setup.js"
   },
   "dependencies": {
     "clipboard": "^2.0.8",
@@ -20,11 +26,18 @@
     "@babel/cli": "^7.15.4",
     "@babel/core": "^7.15.4",
     "@babel/plugin-proposal-object-rest-spread": "^7.14.7",
+    "@babel/plugin-transform-modules-commonjs": "^7.16.7",
     "@babel/plugin-transform-react-jsx": "^7.14.9",
     "@babel/preset-env": "^7.15.4",
     "babel-loader": "^8.2.2",
     "dotenv": "^10.0.0",
+    "eslint": "^7.32.0",
+    "eslint-config-standard": "^16.0.3",
+    "eslint-plugin-import": "^2.25.4",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^5.2.0",
     "fsbin": "^1.0.10",
+    "jest-environment-jsdom": "^27.4.6",
     "webpack": "^5.51.2",
     "webpack-cli": "^4.8.0",
     "webpack-dev-server": "^4.1.0"

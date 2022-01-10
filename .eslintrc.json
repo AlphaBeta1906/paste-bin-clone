@@ -1,0 +1,18 @@
+{
+    "env": {
+        "browser": true,
+        "es6": true
+    },
+    "extends": [
+        "standard"
+    ],
+    "parserOptions": {
+        "sourceType": "module"
+    },
+    "rules": {
+    	"quotes": ["error", "double"],
+    	"eqeqeq": "off",
+    	"no-tabs": "off",
+    	"no-mixed-spaces-and-tabs": "off"
+    }
+}
