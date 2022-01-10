@@ -1,20 +1,22 @@
+// this module contain object that have language name as key and language hljs alias as value
+
 var Lang = {
-	"python": "python",
-	"java": "java",
-	"c": "c",
-	"c++": "cpp",
-	"c#": "cs",
-	"ruby": "ruby",
-	"go": "go",
-	"rust": "rust",
-	"jsx": "jsx",
-	"tsx": "tsx",
-	"javascript": "javascript",
-	"typescript": "typescript",
-	"haskell": "haskell",
-	"elm": "elm",
-	"erlang": "erlang",
-	"elixir" : "elixir"
+	"Python": "python",
+	"Java": "java",
+	"C": "c",
+	"C++": "cpp",
+	"C#": "cs",
+	"Ruby": "ruby",
+	"Go": "go",
+	"Rust": "rust",
+	"Jsx": "jsx",
+	"Tsx": "tsx",
+	"Javascript": "javascript",
+	"Typescript": "typescript",
+	"Haskell": "haskell",
+	"Elm": "elm",
+	"Erlang": "erlang",
+	"Elixir" : "elixir"
 }
 
 export default Lang
