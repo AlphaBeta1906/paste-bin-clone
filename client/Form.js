@@ -108,7 +108,7 @@ var Form = {
 							}
 						},
 						Form.option().map(function(data){
-							return m("option",{value:data.key},data.value)
+							return m("option",{value:data.value},data.key)
 						}) 
 					),
 					m("label",{for:"code"},"Code"),
@@ -119,6 +119,7 @@ var Form = {
 							placeholder:"your code here...",
 							required:true,
 							disabled:state.loading,
+							maxlength:"10000", 
 							oninput:function(e){
 								state.code = e.target.value
 							}
