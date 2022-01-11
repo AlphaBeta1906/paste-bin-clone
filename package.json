@@ -1,17 +1,10 @@
 {
-  "name": "sample-mithril-app",
+  "name": "pastebin-clone",
   "version": "0.1.0",
-  "jest": {
-    "verbose": true,
-    "globals": {
-      "window": {}
-    }
-  },
   "scripts": {
     "dev": "webpack-dev-server --config webpack.dev.js",
     "build": "fsbin emptyDir build && fsbin copy public build && webpack --config webpack.build.js",
-    "clean": "fsbin emptyDir build",
-    "test": "ospec --require ./test_setup.js"
+    "clean": "fsbin emptyDir build"
   },
   "dependencies": {
     "clipboard": "^2.0.8",
