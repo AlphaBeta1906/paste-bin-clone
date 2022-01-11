@@ -31,8 +31,6 @@ const Fetch = {
       body: state,
       timeout: 30000
     }).then(function (data) {
-      console.log(data)
-      console.log(data.unique_id)
       state.unique_id = data.unique_id
       state.reset()
       Swal.fire(
@@ -42,11 +40,8 @@ const Fetch = {
       )
       m.route.set("/paste/:id", { id: state.unique_id })
     }).catch(function (error) {
-      console.log(error)
-
-      state.reset()
+    	state.reset()
     })
-    console.log(state.loading)
   },
   _get: function (id) {
   		const paste = {}

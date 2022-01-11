@@ -16,10 +16,10 @@ const Code = {
         : m(`code.hljs language-${paste.language}`,
 				 	{
             style: {
-				 			"min-height": "250px",
-				 			"font-size": "14pt"
-				 		   }
-				 	}, m.trust(paste.code))
+				 	"min-height": "250px",
+				 	"font-size": "12pt"
+				   }
+		   }, m.trust(paste.code))
     )
   }
 }
@@ -27,19 +27,21 @@ const Code = {
 const Paste = {
   view: function (vnode) {
     new ClipboardJS(".btn")
-    document.title = paste.title
+    document.title = paste.title ? paste.title : paste.error ? "paste not found" : "Paste bin clone"
     return 	m(".container",
       m(Nav),
       m("article",
         m("",
-          m("header", m("h3", paste.title)),
-          m("button.btn fas fa-copy",
-            {
-              style: "width:25%;",
-              "data-clipboard-target": ".hljs"
-            }, "copy"),
+          m("header", paste.title ? m("h3", paste.title) : m("span", { "aria-busy": "true", style: { padding: "15px" } },"loading")),
+          paste.error
+            ? m("")
+            : m("button.btn fas fa-copy",
+              {
+                style: "width:25%;",
+                "data-clipboard-target": ".hljs"
+              }, "copy"),
           m(Code, { id: vnode.attrs.id }),
-          m("footer", `created at : ${paste.date}`)
+          m("footer", `created at : ${paste.date ? paste.date : "unknown"}`)
         )
       ),
       m(Footer)
