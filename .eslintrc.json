@@ -13,6 +13,7 @@
     	"quotes": ["error", "double"],
     	"eqeqeq": "off",
     	"no-tabs": "off",
-    	"no-mixed-spaces-and-tabs": "off"
+    	"no-mixed-spaces-and-tabs": "off",
+    	"no-console": "error"
     }
 }
