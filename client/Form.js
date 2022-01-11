@@ -55,7 +55,7 @@ const Fetch = {
       paste.language = data.language
       paste.code = data.code
       paste.date = data.date_created.split("T")[0]
-      paste.code = hljs.highlight(paste.code, { language: paste.language }).value
+      paste.html = hljs.highlight(paste.code, { language: paste.language }).value
     }).catch(function (error) {
       paste.error = "paste not found"
       paste.code = error.code

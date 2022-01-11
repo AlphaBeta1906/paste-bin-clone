@@ -4,6 +4,7 @@ import { Nav, Footer } from "./Nav"
 import { Fetch } from "./Form"
 
 let paste = {}
+var raw = false
 
 const Code = {
   oninit: function (vnode) {
@@ -13,13 +14,15 @@ const Code = {
     return m("pre",
 				 paste.error
         ? m("code", paste.error)
-        : m(`code.hljs language-${paste.language}`,
+        : m(`code`,
 				 	{
             style: {
 				 	"min-height": "250px",
 				 	"font-size": "12pt"
-				   }
-		   }, m.trust(paste.code))
+				   },
+			class:raw?"" :`hljs language-${paste.language}`,
+			id: "paste"
+		   }, raw?paste.code:m.trust(paste.html))
     )
   }
 }
@@ -35,11 +38,17 @@ const Paste = {
           m("header", paste.title ? m("h3", paste.title) : m("span", { "aria-busy": "true", style: { padding: "15px" } },"loading")),
           paste.error
             ? m("")
-            : m("button.btn fas fa-copy",
+            : m("button.btn",
               {
                 style: "width:25%;",
-                "data-clipboard-target": ".hljs"
-              }, "copy"),
+                "data-clipboard-target": "#paste"
+              }, "copy",m("i.fas fa-copy",{style:"padding-left:15px"})),
+              m("a",{
+              	onclick: function(){
+              		raw = raw?false:true
+              	},
+              	style:"cursor:pointer"
+              },"Raw"),
           m(Code, { id: vnode.attrs.id }),
           m("footer", `created at : ${paste.date ? paste.date : "unknown"}`)
         )
