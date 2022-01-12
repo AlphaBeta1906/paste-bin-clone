@@ -116,6 +116,22 @@ const Form = {
           maxlength: "10000",
           oninput: function (e) {
             state.code = e.target.value
+          },
+          onkeydown: function(e){
+       		  var keyCode = e.keyCode || e.which;
+			  if (keyCode == 9) {
+			    e.preventDefault();
+			    var start = this.selectionStart;
+			    var end = this.selectionEnd;
+			    var text = $(this).val();
+			    var selText = text.substring(start, end);
+			    $(this).val(
+			      text.substring(0, start) +
+			      "\t" + selText.replace(/\n/g, "\n\t") +
+			      text.substring(end)
+			    );
+			    this.selectionStart = this.selectionEnd = start + 1;
+          	}
           }
         }),
       m("button", { type: "submit", disabled: state.loading }, "create paste")
