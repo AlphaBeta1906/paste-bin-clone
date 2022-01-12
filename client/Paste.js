@@ -38,12 +38,12 @@ const Paste = {
           m("header", paste.title ? m("h3", paste.title) : m("span", { "aria-busy": "true", style: { padding: "15px" } },"loading")),
           paste.error
             ? m("")
-            : m("button.btn",
+            : m("button.btn d-inline",
               {
                 style: "width:25%;",
                 "data-clipboard-target": "#paste"
               }, "copy",m("i.fas fa-copy",{style:"padding-left:15px"})),
-              m("a",{
+              m("a.d-inline ps-3",{
               	onclick: function(){
               		raw = raw?false:true
               	},
