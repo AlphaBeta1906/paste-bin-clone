@@ -38,7 +38,7 @@ const Fetch = {
 			  "",
 			  "success"
       )
-      m.route.set("/paste/:id", { id: state.unique_id })
+      m.route.set("/paste/:key", { key: state.unique_id })
     }).catch(function (error) {
     	state.reset()
     })

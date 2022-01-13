@@ -8,5 +8,5 @@ $(theme == "dark" ? "#light" : "#dark").attr("disabled", "disabled")
 // m.route.prefix = ""
 m.route(document.body, "/newpaste", {
   "/newpaste": Home,
-  "/paste/:id": Paste
+  "/paste/:key": Paste
 })

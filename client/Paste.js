@@ -7,10 +7,7 @@ let paste = {}
 var raw = false
 
 const Code = {
-  oninit: function (vnode) {
-    paste = Fetch._get(vnode.attrs.id)
-  },
-  view: function () {
+  view: function (vnode) {
     return m("pre",
 				 paste.error
         ? m("code", paste.error)
@@ -28,14 +25,18 @@ const Code = {
 }
 
 const Paste = {
+  oninit: function (vnode) {
+    paste = Fetch._get(vnode.attrs.key)
+  },
   view: function (vnode) {
     new ClipboardJS(".btn")
     document.title = paste.title ? paste.title : paste.error ? "paste not found" : "Paste bin clone"
+
     return 	m(".container",
       m(Nav),
       m("article",
         m("",
-          m("header", paste.title ? m("h3", paste.title) : m("span", { "aria-busy": "true", style: { padding: "15px" } },"loading")),
+          m("header", paste.code ? m("h3", paste.code!=404?paste.title:"paste not found") : m("span", { "aria-busy": "true", style: { padding: "15px" } },"loading")),
           paste.error
             ? m("")
             : m("button.btn d-inline",
@@ -49,7 +50,7 @@ const Paste = {
               	},
               	style:"cursor:pointer"
               },"Raw"),
-          m(Code, { id: vnode.attrs.id }),
+          m(Code, { paste: paste }),
           m("footer", `created at : ${paste.date ? paste.date : "unknown"}`)
         )
       ),
