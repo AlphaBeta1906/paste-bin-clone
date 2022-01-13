@@ -4,22 +4,22 @@ import { Nav, Footer } from "./Nav"
 import { Fetch } from "./Form"
 
 let paste = {}
-var raw = false
+let raw = false
 
 const Code = {
   view: function (vnode) {
     return m("pre",
 				 paste.error
         ? m("code", paste.error)
-        : m(`code`,
+        : m("code",
 				 	{
             style: {
 				 	"min-height": "250px",
 				 	"font-size": "12pt"
 				   },
-			class:raw?"" :`hljs language-${paste.language}`,
-			id: "paste"
-		   }, raw?paste.code:m.trust(paste.html))
+            class: raw ? "" : `hljs language-${paste.language}`,
+            id: "paste"
+		   }, raw ? paste.code : m.trust(paste.html))
     )
   }
 }
@@ -36,20 +36,20 @@ const Paste = {
       m(Nav),
       m("article",
         m("",
-          m("header", paste.code ? m("h3", paste.code!=404?paste.title:"paste not found") : m("span", { "aria-busy": "true", style: { padding: "15px" } },"loading")),
+          m("header", paste.code ? m("h3", paste.code != 404 ? paste.title : "paste not found") : m("span", { "aria-busy": "true", style: { padding: "15px" } }, "loading")),
           paste.error
             ? m("")
             : m("button.btn d-inline",
               {
                 style: "width:25%;",
                 "data-clipboard-target": "#paste"
-              }, "copy",m("i.fas fa-copy",{style:"padding-left:15px"})),
-              m("a.d-inline ps-3",{
-              	onclick: function(){
-              		raw = raw?false:true
+              }, "copy", m("i.fas fa-copy", { style: "padding-left:15px" })),
+          m("a.d-inline ps-3", {
+              	onclick: function () {
+              		raw = !raw
               	},
-              	style:"cursor:pointer"
-              },"Raw"),
+              	style: "cursor:pointer"
+          }, "Raw"),
           m(Code, { paste: paste }),
           m("footer", `created at : ${paste.date ? paste.date : "unknown"}`)
         )

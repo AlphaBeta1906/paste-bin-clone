@@ -117,20 +117,20 @@ const Form = {
           oninput: function (e) {
             state.code = e.target.value
           },
-          onkeydown: function(e){
-       		  var keyCode = e.keyCode || e.which;
+          onkeydown: function (e) {
+       		  const keyCode = e.keyCode || e.which
 			  if (keyCode == 9) {
-			    e.preventDefault();
-			    var start = this.selectionStart;
-			    var end = this.selectionEnd;
-			    var text = $(this).val();
-			    var selText = text.substring(start, end);
+			    e.preventDefault()
+			    const start = this.selectionStart
+			    const end = this.selectionEnd
+			    const text = $(this).val()
+			    const selText = text.substring(start, end)
 			    $(this).val(
 			      text.substring(0, start) +
 			      "\t" + selText.replace(/\n/g, "\n\t") +
 			      text.substring(end)
-			    );
-			    this.selectionStart = this.selectionEnd = start + 1;
+			    )
+			    this.selectionStart = this.selectionEnd = start + 1
           	}
           }
         }),
