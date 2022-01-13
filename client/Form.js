@@ -109,7 +109,7 @@ const Form = {
       m("textarea",
         {
           name: "code",
-          style: "height: 250px",
+          style: "height: 250px;resize:vertical;",
           placeholder: "your code here...",
           required: true,
           disabled: state.loading,
