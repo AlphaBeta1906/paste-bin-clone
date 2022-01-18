@@ -1,5 +1,6 @@
 import m from "mithril"
 import ClipboardJS from "clipboard"
+import moment from "moment"
 import { Nav, Footer } from "./Nav"
 import { Fetch } from "./Form"
 
@@ -30,8 +31,8 @@ const Paste = {
   },
   view: function (vnode) {
     new ClipboardJS(".btn")
-    document.title = paste.title ? paste.title : paste.error ? "paste not found" : "Paste bin clone"
-
+    document.title = paste.title ? `Pastebin clone|${paste.title}` : paste.error ? "paste not found" : "Paste bin clone"
+	var date = new Date(paste.date)
     return 	m(".container",
       m(Nav),
       m("article",
@@ -51,7 +52,7 @@ const Paste = {
               	style: "cursor:pointer"
           }, "Raw"),
           m(Code, { paste: paste }),
-          m("footer", `created at : ${paste.date ? paste.date : "unknown"}`)
+          m("footer", `created at : ${paste.date ? moment(date).format("D MMM, YYYY") : "unknown"}`)
         )
       ),
       m(Footer)
