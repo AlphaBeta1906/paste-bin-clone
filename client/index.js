@@ -18,7 +18,7 @@ const Wrapper = {
 	}
 }
 
-m.route(document.body, "/newpaste", {
+m.route(document.body, "/", {
   "/": {
   	view: function(){
   		return m(Wrapper,m(Home))
