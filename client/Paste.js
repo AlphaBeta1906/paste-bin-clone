@@ -3,6 +3,7 @@ import ClipboardJS from "clipboard"
 import moment from "moment"
 import { Nav, Footer } from "./Nav"
 import { Fetch } from "./Form"
+import Lang from "./Lang"
 
 let paste = {}
 let raw = false
@@ -26,6 +27,9 @@ const Code = {
 }
 
 const Paste = {
+ get_key: function(object, value) {
+	  return Object.keys(object).find(key => object[key] === value);
+  },
   oninit: function (vnode) {
     paste = Fetch._get(vnode.attrs.id)
     console.log(paste)
@@ -38,7 +42,10 @@ const Paste = {
      !paste.title?m(".dot"):
       m("article",
         m("",
-          m("header", paste.code ? m("h3", paste.code != 404 ? paste.title : "paste not found") : m("span", { "aria-busy": "true", style: { padding: "15px" } }, "loading")),
+          m("header", 
+          			m("h3", paste.code != 404 ? paste.title : "paste not found"),
+          			m("p",`Language : ${Paste.get_key(Lang,paste.language)}`)
+          		),
           paste.error? m("")
             : m("button.btn d-inline",
               {
