@@ -16,7 +16,8 @@ const Nav = {
         m("li", m("h3", "Logo"))
       ),
       m("ul",
-        document.title === "New paste" ? m("") : m("li", m(Link, { link: "/home", text: "New paste" })),
+        m("li", m(Link, { link: "/", text: "Home" })),
+        m("li", m(Link, { link: "/newpaste", text: "New paste" })),
         m("li",
           m("label", { for: "check" }),
           m("i.fas fa-sun", { style: "padding-right:2px" }),
