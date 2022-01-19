@@ -27,35 +27,34 @@ const Code = {
 
 const Paste = {
   oninit: function (vnode) {
-    paste = Fetch._get(vnode.attrs.key)
+    paste = Fetch._get(vnode.attrs.id)
+    console.log(paste)
   },
   view: function (vnode) {
     new ClipboardJS(".btn")
-    document.title = paste.title ? `Pastebin clone|${paste.title}` : paste.error ? "paste not found" : "Paste bin clone"
+    document.title = paste.title ? `Pastebin clone| ${paste.title}` : paste.error ? "paste not found" : "Paste bin clone"
 	var date = new Date(paste.date)
     return 	m(".container",
-      m(Nav),
+     !paste.title?m(".dot"):
       m("article",
         m("",
           m("header", paste.code ? m("h3", paste.code != 404 ? paste.title : "paste not found") : m("span", { "aria-busy": "true", style: { padding: "15px" } }, "loading")),
-          paste.error
-            ? m("")
+          paste.error? m("")
             : m("button.btn d-inline",
               {
                 style: "width:25%;",
                 "data-clipboard-target": "#paste"
               }, "copy", m("i.fas fa-copy", { style: "padding-left:15px" })),
-          m("a.d-inline ps-3", {
+          		m("a.d-inline ps-3", {
               	onclick: function () {
               		raw = !raw
               	},
-              	style: "cursor:pointer"
-          }, "Raw"),
+              		style: "cursor:pointer"
+          		}, "Raw"),
           m(Code, { paste: paste }),
           m("footer", `created at : ${paste.date ? moment(date).format("D MMM, YYYY") : "unknown"}`)
         )
       ),
-      m(Footer)
     )
   }
 }

@@ -1,19 +1,63 @@
 import m from "mithril"
 import $ from "jquery"
-import { Nav, Footer, theme } from "./Nav"
-import { Form } from "./Form"
+import moment from "moment"
+import { theme } from "./Nav"
+import Lang from "./Lang"
+
+var state = {
+	pastes: [],
+	complete: false,
+	loading: false,
+	page: 1
+}
+
+
 
 const Home = {
-  view: function () {
-  	$("head").append(`<meta property="og:title" content="Paste bin clone app" />`)
-  	$("head").append(`<meta property="og:url" content="https://pastebin-clone.netlify.app/#!/newpaste" />`)
-    document.title = "New paste"
-    return m(".container",
-      m(Nav),
-      m(Form),
-      m(Footer)
-    )
-  }
+	get_key: function(object, value) {
+	  return Object.keys(object).find(key => object[key] === value);
+	},
+	fetch: function(){
+		m.request({
+	  		method: "GET",
+	  		url: `https://pastebincloneapi.pythonanywhere.com/api/v1/pastes?page=${state.page}`,
+	  		timeout: 30000
+	  	}).then(function(data){
+	  		state.pastes = state.pastes.concat(data.pastes)	
+	  		state.loading = false
+	  	}).catch(function(error){
+	  		state.complete = true
+	  		state.loading = false
+	  	})
+	},
+	oninit: function(){
+		document.title = "Home"
+		Home.fetch()
+	},
+	view: function(){
+		return state.pastes.length <= 0? m(".dot"):
+			   m(".row",
+					state.pastes.map(function(paste){
+						var date = new Date(paste.date_created.split("T")[0])
+						return m("article",
+									m(m.route.Link,{href: `/paste/${paste.unique_id}`,style: "font-size:1.5rem"},paste.title),
+									m("p",`Language : ${Home.get_key(Lang,paste.language)} `),
+								  m("footer",moment(date).format("D MMM, YYYY"))
+								)
+					}),state.loading?m(".dot")
+						:
+						state.complete?m("span"):
+						m("button",{
+							onclick: function(){
+								state.loading = true
+								state.page += 1
+								if(!state.complete){
+									Home.fetch()
+								}
+							}							
+						},"load more")
+				)
+	}
 }
 
 export { Home, theme }

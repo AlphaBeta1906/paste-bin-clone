@@ -61,7 +61,7 @@ const Fetch = {
       paste.code = error.code
     })
     return paste
-  }
+  },
 }
 
 const Form = {
