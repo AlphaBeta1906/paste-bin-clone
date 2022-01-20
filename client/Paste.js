@@ -53,11 +53,15 @@ const Paste = {
                 "data-clipboard-target": "#paste"
               }, "copy", m("i.fas fa-copy", { style: "padding-left:15px" })),
           		m("a.d-inline ps-3", {
-              	onclick: function () {
-              		raw = !raw
-              	},
+              		onclick: function () {
+              			raw = !raw
+              		},
               		style: "cursor:pointer"
           		}, "Raw"),
+          		m("a.d-inline ps-3",{
+          			href: `https://pastebincloneapi.pythonanywhere.com/api/v1/paste/download/${vnode.attrs.id}`,
+          			download: ""
+          		},"Download"),
           m(Code, { paste: paste }),
           m("footer", `created at : ${paste.date ? moment(date).format("D MMM, YYYY") : "unknown"}`)
         )
