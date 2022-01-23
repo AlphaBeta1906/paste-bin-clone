@@ -6,7 +6,7 @@ import Lang from "./Lang"
 
 const state = {
   title: "",
-  language: "python",
+  language: "py",
   code: "",
   loading: false,
   unique_id: "",
