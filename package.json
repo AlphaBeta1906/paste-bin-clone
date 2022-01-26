@@ -12,6 +12,7 @@
     "jquery": "^3.6.0",
     "mithril": "^2.0.4",
     "moment": "^2.29.1",
+    "prismjs": "^1.26.0",
     "sweetalert2": "^11.3.3"
   },
   "devDependencies": {
