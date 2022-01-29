@@ -41,7 +41,7 @@ const Home = {
 						var date = new Date(paste.date_created.split("T")[0])
 						return m("article",
 									m(m.route.Link,{href: `/paste/${paste.unique_id}`,style: "font-size:1.5rem"},paste.title),
-									m("p",`Language : ${Home.get_key(Lang,paste.language == "python"?"py":paste.language)} `),
+									m("p",`Language : ${paste.language} `),
 								  m("footer",moment(date).format("D MMM, YYYY"))
 								)
 					}),state.loading?m(".dot")

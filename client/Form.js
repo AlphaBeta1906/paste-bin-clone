@@ -1,11 +1,7 @@
 import m from "mithril"
 import $ from "jquery"
 import Swal from "sweetalert2"
-import hljs from "highlight.js"
 import Prism from "prismjs"
-import 'prismjs/components/prism-java';
-import 'prismjs/components/prism-rust';
-import loadLanguages from "prismjs/components"
 import Lang from "./Lang"
 
 const state = {
@@ -55,7 +51,6 @@ const Fetch = {
       cache: true,
       timeout: 30000
     }).then(function (data) {   
-      loadLanguages([])
       paste.title = data.title
       paste.language = data.language
       paste.code = data.code

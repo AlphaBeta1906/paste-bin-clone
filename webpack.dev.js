@@ -27,7 +27,11 @@ if (babel) {
       options: {
         presets: ['@babel/preset-env'],
         plugins: ['@babel/plugin-proposal-object-rest-spread',
-          ['@babel/plugin-transform-react-jsx',{"pragma": "m"}]
+          ['@babel/plugin-transform-react-jsx',{"pragma": "m"}],
+          ["prismjs", 
+          	{
+        		"languages": ["python","html","css","js","go","rust","jsx","tsx","ts","elixir","elm","ruby","c","cpp","cs"],
+    		}]
         ],
       },
     },

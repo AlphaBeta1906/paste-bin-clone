@@ -44,7 +44,7 @@ const Paste = {
         m("",
           m("header", 
           			m("h3", paste.code != 404 ? paste.title : "paste not found"),
-          			m("p",`Language : ${Paste.get_key(Lang,paste.language == "python"?"py":paste.language)}`)
+          			m("p",`Language : ${paste.language}`),
           		),
           paste.error? m("")
             : m("button.btn d-inline",
