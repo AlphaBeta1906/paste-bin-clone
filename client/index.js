@@ -1,12 +1,12 @@
 import m from "mithril"
-import $ from "jquery"
+import u from "umbrellajs"
 import { Home, theme } from "./MainView"
 import { Paste } from "./Paste"
 import { Nav,Footer} from "./Nav"
 import { Form } from "./Form"
 
-$("html").attr("data-theme", theme)
-$(theme == "dark" ? "#light" : "#dark").attr("disabled", "disabled")
+u("html").attr("data-theme", theme)
+u(theme == "dark" ? "#light" : "#dark").attr("disabled", "disabled")
 
 const Wrapper = {
 	view: function(vnode){

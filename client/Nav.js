@@ -1,5 +1,5 @@
 import m from "mithril"
-import $ from "jquery"
+import u from "umbrellajs"
 
 const theme = localStorage.getItem("theme") === null ? "ligth" : localStorage.getItem("theme")
 
@@ -26,12 +26,12 @@ const Nav = {
             type: "checkbox",
             role: "switch",
             oninput: function () {
-              $("html").attr("data-theme", this.checked ? "dark" : "light")
-              $(this.checked ? "#light" : "#dark").attr("disabled", "disabled")
-              $(this.checked ? "#dark" : "#light").removeAttr("disabled")
+              u("html").attr("data-theme", this.checked ? "dark" : "light")
+              u(this.checked ? "#light" : "#dark").attr("disabled", "disabled")
+              u(this.checked ? "#dark" : "#light").attr("disabled",false)
               localStorage.setItem("theme", this.checked ? "dark" : "light")
             },
-            checked: $("html").attr("data-theme") != "light"
+            checked: u("html").attr("data-theme") != "light"
           }),
           m("i.fas fa-moon")
         )
