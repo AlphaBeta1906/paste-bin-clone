@@ -1,5 +1,4 @@
 import m from "mithril"
-import $ from "jquery"
 import moment from "moment"
 import { theme } from "./Nav"
 import Lang from "./Lang"

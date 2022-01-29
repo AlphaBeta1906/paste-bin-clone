@@ -1,5 +1,5 @@
 import m from "mithril"
-import $ from "jquery"
+import u from "umbrellajs"
 import Swal from "sweetalert2"
 import Prism from "prismjs"
 import Lang from "./Lang"
@@ -14,9 +14,9 @@ const state = {
     state.title = ""
     state.language = "python"
     state.code = ""
-    $("#title").val("")
-    $("textarea").val("")
-    $("select").val("python")
+    u("#title").attr("val","")
+    u("textarea").attr("val","")
+    u("select").attr("val","python")
     state.loading = false
   }
 }
