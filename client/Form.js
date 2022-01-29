@@ -21,6 +21,14 @@ const state = {
   }
 }
 
+var unlistedlang = {
+	"rs": "rust",
+	"rb": "ruby",
+	"ex": "elixir",
+	"erl": "erlang"
+}
+var arrlang = ["rs","rb","ex","erl"]
+
 // const url_test = "http://127.0.0.1:8000/api/v1/paste"
 const url = "https://pastebincloneapi.pythonanywhere.com/api/v1/paste"
 const Fetch = {
@@ -55,6 +63,9 @@ const Fetch = {
       paste.language = data.language
       paste.code = data.code
       paste.date = data.date_created.split("T")[0]
+      if(arrlang.includes(paste.language)){
+      	paste.language = unlistedlang[paste.language]
+      }
       paste.html = Prism.highlight(paste.code, Prism.languages[paste.language], paste.language)
     }).catch(function (error) {
       paste.error = "paste not found"
