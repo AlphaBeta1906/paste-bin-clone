@@ -21,11 +21,11 @@ const Code = {
 				   },
             class: raw ? "" : `hljs language-${paste.language}`,
             id: "paste"
-		   }, raw ? paste.code : m.trust(paste.html))
+		  }, raw ? paste.code : m.trust(paste.html))
     )
   }
 }
-
+ 
 const Paste = {
  get_key: function(object, value) {
 	  return Object.keys(object).find(key => object[key] === value);
